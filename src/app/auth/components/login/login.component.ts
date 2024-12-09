@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Component, inject, Inject } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
+import { Router } from "@angular/router";
 
 
 @Component ({
@@ -13,6 +14,7 @@ import { AuthService } from "../../services/auth.service";
 export class LoginComponent {
 
   private authService =inject(AuthService)
+  private router = inject(Router)
 
   loginForm=new FormGroup({
     email:new FormControl("", [Validators.email, Validators.required]),
@@ -24,6 +26,7 @@ export class LoginComponent {
 
     (res)=>{
         console.log(res)
+        this.router.navigate(["/admin"])
       },
       (error)=>{
         console.log(error)
